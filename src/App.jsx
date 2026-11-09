@@ -33,7 +33,7 @@ function Barras({ datos, campo }) {
         <XAxis type="number" hide />
         <YAxis type="category" dataKey={campo} width={150} tick={{ fontSize: 12 }} />
         <Tooltip formatter={(v) => fmt(v)} />
-        <Bar dataKey="titulos" name="Títulos" fill="#E50914" radius={[0, 4, 4, 0]} />
+        <Bar isAnimationActive={false} dataKey="titulos" name="Títulos" fill="#E50914" radius={[0, 4, 4, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );
@@ -81,8 +81,8 @@ export default function App() {
               <YAxis />
               <Tooltip formatter={(v) => fmt(v)} />
               <Legend />
-              <Line type="monotone" dataKey="estrenos" name="Año de estreno" stroke="#E50914" strokeWidth={2} dot={false} />
-              <Line type="monotone" dataKey="agregados" name="Agregados a Netflix" stroke="#9AA5B1" strokeWidth={2} dot={false} />
+              <Line isAnimationActive={false} type="monotone" dataKey="estrenos" name="Año de estreno" stroke="#E50914" strokeWidth={2} dot={false} />
+              <Line isAnimationActive={false} type="monotone" dataKey="agregados" name="Agregados a Netflix" stroke="#9AA5B1" strokeWidth={2} dot={false} />
             </LineChart>
           </ResponsiveContainer>
           <small>2021 es un año parcial (datos hasta el 25 de septiembre).</small>
@@ -91,7 +91,7 @@ export default function App() {
         <Panel titulo="Tipo de contenido">
           <ResponsiveContainer width="100%" height={260}>
             <PieChart>
-              <Pie data={tipo} dataKey="value" nameKey="name" innerRadius={60} outerRadius={95} label={(e) => e.name}>
+              <Pie isAnimationActive={false} data={tipo} dataKey="value" nameKey="name" innerRadius={60} outerRadius={95} label={(e) => e.name}>
                 {tipo.map((_, i) => <Cell key={i} fill={COLORES[i]} />)}
               </Pie>
               <Tooltip formatter={(v) => fmt(v)} />
