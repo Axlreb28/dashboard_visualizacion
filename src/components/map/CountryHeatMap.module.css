@@ -1,0 +1,46 @@
+.wrap {
+  position: relative;
+  height: 100%;
+  min-height: 380px;
+}
+
+.map {
+  position: absolute;
+  inset: 0 0 34px 0;
+  border-radius: 6px;
+}
+
+.legend {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  font-size: 11px;
+  color: var(--color-muted);
+}
+
+.gradient {
+  width: 220px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3px;
+}
+
+.noData {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.noData i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #444;
+}

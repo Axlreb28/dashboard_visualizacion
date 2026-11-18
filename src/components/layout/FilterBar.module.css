@@ -1,0 +1,75 @@
+.bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: var(--fs-label);
+}
+.field > span { color: var(--color-muted); }
+.field b { font-weight: 600; min-width: 34px; text-align: center; }
+
+.field select {
+  background: transparent;
+  color: var(--color-text);
+  border: none;
+  font-size: var(--fs-label);
+  padding: 3px 0;
+  cursor: pointer;
+}
+.field select option { background: var(--color-surface); }
+
+/* Deslizador de doble manija: dos inputs range superpuestos */
+.range {
+  position: relative;
+  width: 120px;
+  height: 18px;
+}
+.range::before,
+.range::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  height: 3px;
+  border-radius: 2px;
+}
+.range::before { left: 0; right: 0; background: var(--color-border); }
+.range::after { left: var(--left); right: var(--right); background: var(--color-accent); }
+
+.range input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  margin: 0;
+  background: none;
+  pointer-events: none;
+  appearance: none;
+  z-index: 1;
+}
+.range input::-webkit-slider-thumb {
+  appearance: none;
+  pointer-events: auto;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-text);
+  border: 2px solid var(--color-accent);
+  cursor: pointer;
+}
+.range input::-moz-range-thumb {
+  pointer-events: auto;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-text);
+  border: 2px solid var(--color-accent);
+  cursor: pointer;
+}

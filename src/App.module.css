@@ -1,0 +1,54 @@
+.page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+/* Retícula de 12 columnas del wireframe (Fase 2, figura 1). Cada zona ocupa
+   las mismas columnas que en el diseño: mapa 8 + dona 4, línea 12, nube 6 + tops 3 + 3. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gap);
+  grid-template-areas:
+    "kpis  kpis  kpis  kpis  kpis  kpis  kpis  kpis  kpis  kpis  kpis  kpis"
+    "map   map   map   map   map   map   map   map   donut donut donut donut"
+    "line  line  line  line  line  line  line  line  line  line  line  line"
+    "cloud cloud cloud cloud cloud cloud genres genres genres directors directors directors";
+}
+
+.kpis {
+  grid-area: kpis;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+}
+
+.status {
+  color: var(--color-muted);
+  text-align: center;
+  margin-top: 30vh;
+}
+
+/* Tabletas: la dona baja junto a la nube para no comprimir el mapa */
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-areas:
+      "kpis  kpis  kpis  kpis  kpis  kpis  kpis  kpis  kpis  kpis  kpis  kpis"
+      "map   map   map   map   map   map   map   map   map   map   map   map"
+      "line  line  line  line  line  line  line  line  line  line  line  line"
+      "donut donut donut donut donut donut cloud cloud cloud cloud cloud cloud"
+      "genres genres genres genres genres genres directors directors directors directors directors directors";
+  }
+}
+
+/* Móvil (Fase 2, figura 2): una columna en el mismo orden de prioridad y KPIs en 2 × 2 */
+@media (max-width: 760px) {
+  .page { padding: 16px; }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    grid-template-areas: "kpis" "map" "donut" "line" "cloud" "genres" "directors";
+  }
+  .kpis { grid-template-columns: 1fr 1fr; gap: 12px; }
+}

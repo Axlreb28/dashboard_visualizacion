@@ -1,0 +1,41 @@
+/* Tipografía y espaciado de la Fase 2 (sección 5.3 y 5.4). Los colores llegan como
+   variables --color-* desde src/theme/palette.js. */
+:root {
+  --font: "Segoe UI", Inter, Arial, sans-serif;
+  --fs-title: 26px;
+  --fs-kpi: 36px;
+  --fs-panel: 16px;
+  --fs-label: 13px;
+  --fs-axis: 12px;
+  --gap: 20px;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+button, select, input { font-family: inherit; }
+
+/* Tooltips de Leaflet con el estilo del dashboard */
+.leaflet-tooltip.map-tooltip {
+  background: rgba(0, 0, 0, 0.88);
+  border: 1px solid #444;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 12px;
+  box-shadow: none;
+}
+.leaflet-tooltip.map-tooltip::before { display: none; }
+.leaflet-container { background: var(--color-surface); font-family: var(--font); }
+.leaflet-control-attribution { background: transparent !important; color: #666 !important; font-size: 10px; }
+.leaflet-control-attribution a { color: #888 !important; }
+.leaflet-bar a { background: var(--color-surface); color: var(--color-text); border-color: var(--color-border); }
+.leaflet-bar a:hover { background: var(--color-border); }
+.leaflet-bar a.leaflet-disabled { background: var(--color-surface); color: #555; }

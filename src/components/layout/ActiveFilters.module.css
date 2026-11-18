@@ -1,0 +1,27 @@
+.row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  min-height: 28px;
+}
+
+.chip {
+  background: rgba(229, 9, 20, 0.15);
+  border: 1px solid var(--color-accent);
+  color: var(--color-text);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: var(--fs-axis);
+  cursor: pointer;
+}
+.chip span { margin-left: 6px; color: var(--color-accent); font-weight: 700; }
+
+.hint {
+  margin: 0 0 16px;
+  min-height: 28px;
+  color: var(--color-muted);
+  font-size: var(--fs-axis);
+  display: flex;
+  align-items: center;
+}

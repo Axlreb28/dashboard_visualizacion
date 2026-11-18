@@ -6,69 +6,74 @@
 - Axel Rebolledo Cordova
 - 🥃
 
+**Dashboard en línea:** https://axlreb28.github.io/dashboard_visualizacion/
+
 ## Descripción
 
-Dashboard dinámico desarrollado en **React** que analiza el catálogo de Netflix
-(dataset *Netflix Movies and TV Shows* de Kaggle, 8,807 títulos, 2008–2021) para
-comprender las tendencias de producción, los géneros más populares y la
+Dashboard **estratégico** desarrollado en **React** que analiza el catálogo de Netflix
+(dataset *Netflix Movies and TV Shows* de Kaggle, 8,807 títulos, 2008 – septiembre 2021)
+para comprender las tendencias de producción, los géneros más populares y la
 distribución geográfica del contenido.
 
-Es un dashboard **estratégico**: ofrece una visión de largo plazo sobre cómo
-evoluciona el catálogo y cómo varían los gustos por región y año.
-
 ### Indicadores (KPIs)
-- Número de títulos por país.
-- Evolución de lanzamientos por año.
-- Top 5 géneros y Top 5 directores más productivos.
-- Distribución por tipo de contenido (películas vs. series).
+- Total de títulos, películas vs. series, países productores y género #1 (tarjetas).
+- Número de títulos por país (mapa de calor).
+- Evolución de lanzamientos por año (gráfico de líneas).
+- Top 5 géneros y Top 5 directores más productivos (barras + nube de palabras).
 
-### Visualizaciones
-- Mapa de calor (coroplético) de títulos por país.
-- Gráfico temporal de estrenos por año.
-- Nube de palabras de géneros.
-- Gráfico circular por tipo de contenido.
-
-**Demo:** https://axlreb28.github.io/dashboard_visualizacion/
-
-## Ejecutar localmente
-
-```bash
-npm install
-npm run dev      # servidor de desarrollo
-npm run deploy   # compila y publica en GitHub Pages (rama gh-pages)
-```
+### Interactividad
+- Filtros globales: tipo de contenido, rango de años (año de incorporación) y región.
+- Filtro cruzado: clic en un país del mapa o en un género de la nube.
+- Tooltips con valor exacto y porcentaje.
 
 ## Stack
 
 | Capa | Tecnología |
 |------|------------|
-| Frontend | React |
-| Base de datos | PostgreSQL (Supabase) |
-| Preprocesamiento | Python + pandas |
-| Despliegue | Vercel / GitHub Pages |
+| Estructura | React 18 + Vite |
+| Gráficos | Recharts |
+| Mapa | Leaflet + React-Leaflet, geometrías Natural Earth (world-atlas) |
+| Estilos | CSS Modules + variables CSS generadas desde `src/theme/palette.js` |
+| Datos | `scripts/limpieza.py` (pandas) → `public/data/netflix.json`, cargado con `fetch` |
+| Despliegue | GitHub Pages |
 
 ## Estructura
 
 ```
-docs/       Entregables (Fase 1: documento de justificación en PDF)
-scripts/    Scripts de perfilado y limpieza de datos
-src/        Aplicación React (vista previa con KPIs calculados del CSV)
-public/     Archivos estáticos publicados con el sitio
+docs/                 Entregables de cada fase (PDF)
+scripts/              perfilado.py (Fase 1) y limpieza.py (ETL que genera el JSON)
+public/data/          netflix.json (catálogo limpio) y countries-50m.json (geometrías)
+src/
+  theme/palette.js    Paleta de la Fase 2: única fuente de colores
+  styles/global.css   Tipografía, espaciado y estilos de Leaflet
+  hooks/              useNetflixData: carga de datos
+  utils/              aggregations (KPIs), colorScale (escala del mapa), format
+  components/
+    layout/           Header, FilterBar, ActiveFilters, Panel, Footer
+    kpis/             KpiCard, KpiRow
+    charts/           ContentTypeDonut, ReleasesLineChart, TopBarChart, GenreWordCloud, ChartTooltip
+    map/              CountryHeatMap, MapLegend
+  App.jsx             Estado de filtros y retícula de 12 columnas del wireframe
 ```
 
-## Datos
-
-Fuente: [Kaggle – Netflix Movies and TV Shows](https://www.kaggle.com/datasets/shivamb/netflix-shows).
-El CSV no se versiona en el repositorio; descárgalo de Kaggle y colócalo en `data/netflix_titles.csv`.
+## Ejecutar localmente
 
 ```bash
-pip install pandas
-python scripts/perfilado.py data/netflix_titles.csv
+npm install
+npm run dev        # servidor de desarrollo
+npm run deploy     # compila y publica en GitHub Pages (rama gh-pages)
+```
+
+Para regenerar los datos, descarga el CSV de
+[Kaggle](https://www.kaggle.com/datasets/shivamb/netflix-shows) en `data/netflix_titles.csv` y ejecuta:
+
+```bash
+pip install pandas pycountry pycountry-convert
+python scripts/limpieza.py data/netflix_titles.csv public/data/netflix.json
 ```
 
 ## Fases
 
-- [x] **Fase 1 – Análisis:** audiencia, objetivos, plan de preprocesamiento y tipo de dashboard ([docs/Fase1_Justificacion.pdf](docs/Fase1_Justificacion.pdf)).
-- [ ] Fase 2 – Limpieza y carga de datos en la base de datos.
-- [ ] Fase 3 – Desarrollo del dashboard en React.
-- [ ] Fase 4 – Despliegue.
+- [x] **Fase 1 – Análisis:** audiencia, objetivos, preprocesamiento y tipo de dashboard ([PDF](docs/Fase1_Justificacion.pdf)).
+- [x] **Fase 2 – Diseño:** wireframe, KPIs, visualizaciones y armonía estética ([PDF](docs/Fase2_Wireframe.pdf)).
+- [x] **Fase 3 – Implementación en React** ([PDF](docs/Fase3_Implementacion.pdf)).

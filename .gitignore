@@ -3,5 +3,5 @@ dist/
 build/
 .env
 .env.local
-data/
+/data/
 __pycache__/
